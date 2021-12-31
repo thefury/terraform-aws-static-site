@@ -1,11 +1,5 @@
-
-resource "aws_route53_zone" "primary" {
-  name = var.domain_name
-  tags = local.common_tags
-}
-
 resource "aws_route53_record" "primary" {
-  zone_id = aws_route53_zone.primary.zone_id
+  zone_id = var.route53_zone.id
   name    = var.domain_name
   type    = "A"
 
