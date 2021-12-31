@@ -10,6 +10,10 @@ locals {
   }
 }
 
+output "route53_record" {
+  value = aws_route53_record.primary
+}
+
 output "website_bucket" {
   value = aws_s3_bucket.website_bucket.bucket
 }
@@ -19,3 +23,6 @@ output "domain_name" {
 }
 
 
+output "cloudfront_distribution" {
+  value = aws_cloudfront_distribution.website_distribution
+}
