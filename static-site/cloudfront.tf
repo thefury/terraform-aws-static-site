@@ -4,12 +4,8 @@ resource "aws_cloudfront_distribution" "website_distribution" {
   tags = local.common_tags
 
   origin {
-    domain_name = aws_s3_bucket.website_bucket.bucket_regional_domain_name
+    domain_name = aws_s3_bucket.website_bucket.website_endpoint
     origin_id   = "S3-${aws_s3_bucket.website_bucket.bucket}"
-
-    #s3_origin_config {
-    #origin_access_identity = aws_cloudfront_origin_access_identity.origin_access_identity.cloudfront_access_identity_path
-    #}
 
     custom_origin_config {
       http_port              = 80
@@ -30,8 +26,8 @@ resource "aws_cloudfront_distribution" "website_distribution" {
   custom_error_response {
     error_caching_min_ttl = 3000
     error_code            = 404
-    response_code         = 200
-    response_page_path    = "/index.html"
+    response_code         = 404
+    response_page_path    = "/404.html"
   }
 
   default_cache_behavior {

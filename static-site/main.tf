@@ -21,6 +21,10 @@ output "website_bucket" {
   value = aws_s3_bucket.website_bucket.bucket
 }
 
+output "bucket_website_endpoint" {
+  value = aws_s3_bucket.website_bucket.website_endpoint
+}
+
 output "domain_name" {
   value = var.domain_name
 }
