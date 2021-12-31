@@ -18,6 +18,8 @@ resource "aws_s3_bucket" "website_bucket" {
   acl    = "public-read"
   policy = data.aws_iam_policy_document.website_policy.json
 
+  tags = local.common_tags
+
   website {
     index_document = "index.html"
     error_document = "index.html"
