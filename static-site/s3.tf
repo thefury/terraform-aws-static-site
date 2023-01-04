@@ -1,4 +1,6 @@
 data "aws_iam_policy_document" "website_policy" {
+  provider = aws.main
+
   statement {
     actions = [
       "s3:GetObject"
@@ -14,6 +16,8 @@ data "aws_iam_policy_document" "website_policy" {
 }
 
 resource "aws_s3_bucket" "website_bucket" {
+  provider = aws.main
+
   bucket = var.domain_name
   acl    = "public-read"
   policy = data.aws_iam_policy_document.website_policy.json

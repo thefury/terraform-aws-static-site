@@ -1,4 +1,6 @@
 resource "aws_route53_record" "primary" {
+  provider = aws.main
+
   zone_id = var.route53_zone.id
   name    = var.domain_name
   type    = "A"

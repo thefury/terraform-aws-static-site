@@ -1,11 +1,20 @@
 variable "domain_name" {}
 variable "route53_zone" {}
 
+terraform {
+  required_providers {
+    aws = {
+      source                = "hashicorp/aws"
+      version               = ">= 2.7.0"
+      configuration_aliases = [aws.main, aws.cert_provider]
+    }
+  }
+}
 
 locals {
   bucket_name = var.domain_name
   common_tags = {
-    Service   = "static-site-${var.domain_name}"
+    Service = "static-site-${var.domain_name}"
   }
 }
 

@@ -1,6 +1,10 @@
-resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {}
+resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
+  provider = aws.main
+}
 
 resource "aws_cloudfront_distribution" "website_distribution" {
+  provider = aws.main
+
   tags = local.common_tags
 
   origin {
